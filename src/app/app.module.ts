@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, RouteReuseStrategy, Routes } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,10 +10,9 @@ import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +21,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+    AngularFirestoreModule]
+  ,
   providers: [
+    AngularFirestoreModule,
     Dialogs,
     StatusBar,
     SplashScreen,
